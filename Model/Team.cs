@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Work.Model;
+﻿namespace Work.Model;
 
 public partial class Team
 {

@@ -41,7 +41,8 @@ public partial class ApplicationContext : DbContext
 
     public virtual DbSet<Transport> Transports { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024; Database=Маслов2307св1_Воллейбол; Trusted_Connection=True; TrustServerCertificate=True");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024; Database=Маслов2307св1_Воллейбол; Trusted_Connection=True; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Work"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="600" Width="900">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Navigation Menu -->
+        <StackPanel Grid.Column="0" Background="#FFEEE8E8">
+            <Button Content="Tournaments" Margin="10" Height="40" Click="TournamentsButton_Click"/>
+            <Button Content="Teams" Margin="10" Height="40" Click="TeamsButton_Click"/>
+            <Button Content="Players" Margin="10" Height="40" Click="PlayersButton_Click"/>
+            <Button Content="Matches" Margin="10" Height="40" Click="MatchesButton_Click"/>
+            <Button Content="Referees" Margin="10" Height="40" Click="RefereesButton_Click"/>
+            <Button Content="Halls" Margin="10" Height="40" Click="HallsButton_Click"/>
+            <Button Content="Tickets" Margin="10" Height="40" Click="TicketsButton_Click"/>
+            <Button Content="Hotels" Margin="10" Height="40" Click="HotelsButton_Click"/>
+        </StackPanel>
+
+        <!-- Content Area -->
+        <Frame Grid.Column="1" Name="MainContentFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
