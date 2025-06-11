@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Work"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
     </Application.Resources>
 </Application>

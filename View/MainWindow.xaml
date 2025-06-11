@@ -1,30 +1,34 @@
-﻿<Window x:Class="Work.MainWindow"
+﻿<Window x:Class="Work.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Work"
+        xmlns:local="clr-namespace:Work.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="450" Width="800">
+    <TabControl x:Name="TablesTabControl" FontSize="14" >
+        <!-- Пример одной вкладки, остальные по аналогии -->
+        <TabItem Header="Teams">
+            <DockPanel>
+                <!-- Панель кнопок -->
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right" >
+                    <Button Content="Добавить" Width="80" Margin="5,0" Click="AddTeam_Click"/>
+                    <Button Content="Изменить" Width="80" Margin="5,0" Click="EditTeam_Click"/>
+                    <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteTeam_Click"/>
+                </StackPanel>
 
-        <!-- Navigation Menu -->
-        <StackPanel Grid.Column="0" Background="#FFEEE8E8">
-            <Button Content="Tournaments" Margin="10" Height="40" Click="TournamentsButton_Click"/>
-            <Button Content="Teams" Margin="10" Height="40" Click="TeamsButton_Click"/>
-            <Button Content="Players" Margin="10" Height="40" Click="PlayersButton_Click"/>
-            <Button Content="Matches" Margin="10" Height="40" Click="MatchesButton_Click"/>
-            <Button Content="Referees" Margin="10" Height="40" Click="RefereesButton_Click"/>
-            <Button Content="Halls" Margin="10" Height="40" Click="HallsButton_Click"/>
-            <Button Content="Tickets" Margin="10" Height="40" Click="TicketsButton_Click"/>
-            <Button Content="Hotels" Margin="10" Height="40" Click="HotelsButton_Click"/>
-        </StackPanel>
+                <!-- Таблица -->
+                <DataGrid x:Name="TeamsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Город" Binding="{Binding City}" Width="*"/>
+                        <DataGridTextColumn Header="Тренер" Binding="{Binding CoachName}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
 
-        <!-- Content Area -->
-        <Frame Grid.Column="1" Name="MainContentFrame" NavigationUIVisibility="Hidden"/>
-    </Grid>
+        <!-- Добавьте остальные вкладки по аналогии -->
+        <!-- Для компактности можно использовать UserControl или динамическую генерацию вкладок -->
+    </TabControl>
 </Window>
