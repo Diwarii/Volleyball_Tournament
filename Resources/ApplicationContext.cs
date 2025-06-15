@@ -9,6 +9,7 @@ public partial class ApplicationContext : DbContext
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
+    public DbSet<User> Users { get; set; }
     public virtual DbSet<Catering> Caterings { get; set; }
 
     public virtual DbSet<Hall> Halls { get; set; }

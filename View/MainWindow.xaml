@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Work.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <TabControl x:Name="TablesTabControl" FontSize="14" >
-        <!-- Пример одной вкладки, остальные по аналогии -->
-        <TabItem Header="Teams">
+        Title="MainWindow" Height="800" Width="1024">
+    <TabControl x:Name="TablesTabControl" FontSize="14" SelectionChanged="TablesTabControl_SelectionChanged" >
+        
+        <TabItem Header="Команды">
             <DockPanel>
-                <!-- Панель кнопок -->
+                <!-- Панель кнопок Команды-->
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right" >
                     <Button Content="Добавить" Width="80" Margin="5,0" Click="AddTeam_Click"/>
                     <Button Content="Изменить" Width="80" Margin="5,0" Click="EditTeam_Click"/>
                     <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteTeam_Click"/>
                 </StackPanel>
 
-                <!-- Таблица -->
+                <!-- Таблица Команды -->
                 <DataGrid x:Name="TeamsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
@@ -25,10 +25,212 @@
                         <DataGridTextColumn Header="Тренер" Binding="{Binding CoachName}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
+
+
             </DockPanel>
         </TabItem>
 
-        <!-- Добавьте остальные вкладки по аналогии -->
-        <!-- Для компактности можно использовать UserControl или динамическую генерацию вкладок -->
+        <TabItem Header="Игроки">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Width="80" Margin="5,0" Click="AddPlayer_Click"/>
+                    <Button Content="Изменить" Width="80" Margin="5,0" Click="EditPlayer_Click"/>
+                    <Button Content="Удалить" Width="80" Margin="5,0" Click="DeletePlayer_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="PlayersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding BirthDate,StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
+                        <DataGridTextColumn Header="Позиция" Binding="{Binding Position}" Width="100"/>
+                        <DataGridTextColumn Header="Номер" Binding="{Binding JerseyNumber}" Width="80"/>
+                        <DataGridTextColumn Header="Команда" Binding="{Binding Team.Name}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Судьи">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Width="80" Margin="5,0" Click="AddReferee_Click"/>
+                    <Button Content="Изменить" Width="80" Margin="5,0" Click="EditReferee_Click"/>
+                    <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteReferee_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="RefereesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Уровень" Binding="{Binding CertificationLevel}" Width="120"/>
+                        <DataGridTextColumn Header="Опыт (лет)" Binding="{Binding ExperienceYears}" Width="100"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="120"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Персонал команд">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Width="80" Margin="5,0" Click="AddStaff_Click"/>
+                    <Button Content="Изменить" Width="80" Margin="5,0" Click="EditStaff_Click"/>
+                    <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteStaff_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="StaffDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="120"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding BirthDate,StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
+                        <DataGridTextColumn Header="Команда" Binding="{Binding Team.Name}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Турниры">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Width="80" Margin="5,0" Click="AddTournament_Click"/>
+                    <Button Content="Изменить" Width="80" Margin="5,0" Click="EditTournament_Click"/>
+                    <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteTournament_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="TournamentsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                  IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Формат" Binding="{Binding Format}" Width="150"/>
+                        <DataGridTextColumn Header="Дата начала" Binding="{Binding StartDate, StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
+                        <DataGridTextColumn Header="Дата окончания" Binding="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
+                        <DataGridTextColumn Header="Бюджет" Binding="{Binding Budget, StringFormat={}{0:C}}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Покупатели билетов">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Width="80" Margin="5,0" Click="AddBuyer_Click"/>
+                    <Button Content="Изменить" Width="80" Margin="5,0" Click="EditBuyer_Click"/>
+                    <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteBuyer_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="BuyersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                  IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="150"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                        <DataGridTextColumn Header="Паспорт (серия)" Binding="{Binding PassportSeries}" Width="120"/>
+                        <DataGridTextColumn Header="Паспорт (номер)" Binding="{Binding PassportNumber}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Билеты">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Width="80" Margin="5,0" Click="AddTicket_Click"/>
+                    <Button Content="Изменить" Width="80" Margin="5,0" Click="EditTicket_Click"/>
+                    <Button Content="Удалить" Width="80" Margin="5,0" Click="DeleteTicket_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="TicketsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                  IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:C}}" Width="100"/>
+                        <DataGridTextColumn Header="Дата покупки" Binding="{Binding PurchaseDate, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="150"/>
+                        <DataGridTextColumn Header="Покупатель" Binding="{Binding Buyer.FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Матч" Binding="{Binding Match.MatchId}" Width="100"/>
+                        <DataGridTextColumn Header="Место" Binding="{Binding Seat.SeatId}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Залы">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Click="AddHall_Click"/>
+                    <Button Content="Изменить" Click="EditHall_Click"/>
+                    <Button Content="Удалить" Click="DeleteHall_Click"/>
+                </StackPanel>
+                <DataGrid x:Name="HallsDataGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Ряды">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Click="AddHallRow_Click"/>
+                    <Button Content="Изменить" Click="EditHallRow_Click"/>
+                    <Button Content="Удалить" Click="DeleteHallRow_Click"/>
+                </StackPanel>
+                <DataGrid x:Name="HallRowsDataGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Номер ряда" Binding="{Binding RowNumber}"/>
+                        <DataGridTextColumn Header="Зал" Binding="{Binding Hall.Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Места">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Click="AddSeat_Click"/>
+                    <Button Content="Изменить" Click="EditSeat_Click"/>
+                    <Button Content="Удалить" Click="DeleteSeat_Click"/>
+                </StackPanel>
+                <DataGrid x:Name="SeatsDataGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Номер места" Binding="{Binding SeatNumber}"/>
+                        <DataGridTextColumn Header="Ряд" Binding="{Binding Row.RowNumber}"/>
+                        <DataGridTextColumn Header="Зал" Binding="{Binding Row.Hall.Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="Матчи">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                    <Button Content="Добавить" Click="AddMatch_Click"  Width="80" Margin="5,0"/>
+                    <Button Content="Изменить" Click="EditMatch_Click"  Width="80" Margin="5,0"/>
+                    <Button Content="Удалить" Click="DeleteMatch_Click"  Width="80" Margin="5,0"/>
+                </StackPanel>
+
+                <DataGrid x:Name="MatchesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Турнир" Binding="{Binding Tournament.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Команда 1" Binding="{Binding Team1.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Команда 2" Binding="{Binding Team2.Name}" Width="*"/>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding MatchDate, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="150"/>
+                        <DataGridTextColumn Header="Счёт" Width="100">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0}:{1}">
+                                    <Binding Path="Team1Score"/>
+                                    <Binding Path="Team2Score"/>
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Зал" Binding="{Binding Hall.Name}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+
     </TabControl>
 </Window>
